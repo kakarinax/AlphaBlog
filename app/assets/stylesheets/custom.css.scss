@@ -22,7 +22,8 @@
   height: 425px;
 }
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -37,4 +38,8 @@ html, body {
 
 .btn-outline-light {
   margin: 10px;
+}
+
+#form-container {
+  background-color: #94BFD2 !important;
 }
