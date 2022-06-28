@@ -20,8 +20,15 @@
             <li>
               <%= link_to "Articles", articles_path, class: "dropdown-item" %>
             </li>
+             <li>
+              <%= link_to "Users", users_path, class: "dropdown-item" %>
+            </li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li> 
+              <%# <% if @user.present? %>
+                <%# <%= link_to "User profile", user_path(@user.id), class:"dropdown-item"%>
+              <%# <% end %> 
+            </li>
           </ul>
           </li>
         </ul>
