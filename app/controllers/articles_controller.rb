@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   before_action :find_id, only: %i[show edit update destroy]
+  before_action :authenticate_user!, except: %i[index show]
   
   def show; end
 
@@ -15,7 +16,8 @@ class ArticlesController < ApplicationController
 
   def create
     @article = Article.new(required_params)
-    @article.user = User.first
+    @article.user = current_user
+
     if @article.save
       flash[:notice] = 'Article successfully created!'
       redirect_to @article
@@ -46,5 +48,16 @@ class ArticlesController < ApplicationController
 
   def required_params
     params.require(:article).permit(:title, :description)
+  end
+
+  def authenticate_user!
+    unless current_user
+      flash[:alert] = 'You need to sign in or sign up before continuing.'
+      redirect_to root_path
+    end
+  end
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 end
